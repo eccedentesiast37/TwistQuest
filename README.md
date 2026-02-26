@@ -10,7 +10,7 @@ TwistQuest is an AI-powered tongue twister challenge game built with modern web 
 - **Microphone Integration**: Uses the browser's MediaRecorder and Web Speech API for seamless voice input.
 - **Developer Panel**: Built-in panel (accessible via `Ctrl+Shift+D`) to configure ASR API endpoints and test evaluation results.
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Core**: HTML5, Vanilla JavaScript (ES6+)
 - **Styling**: Premium CSS (Transitions, Gradients, Particles)
