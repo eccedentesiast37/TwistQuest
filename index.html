@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="TwistQuest — AI-powered tongue twister challenge. Test your fluency across 3 difficulty levels!" />
+  <title>TwistQuest — Tongue Twister Challenge</title>
+  <link rel="stylesheet" href="css/style.css?v=12" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👅</text></svg>" />
+</head>
+
+<body>
+
+  <!-- ═══ Animated Background ══════════════════════════════════════════ -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ═══ VIEW 1 — WELCOME ═════════════════════════════════════════════ -->
+  <div id="view-welcome" class="view active">
+    <h1 class="welcome-title">Welcome to TwistQuest!!</h1>
+    <p class="welcome-subtitle">Ready for the quest?</p>
+    <p class="welcome-tagline">Kaisi Jeebh Laplapayee</p>
+
+
+
+    <!-- Loading Bar -->
+    <div class="loading-container">
+      <div class="loading-bar segmented">
+        <div id="loading-fill" class="loading-bar-fill segmented">
+          <div class="loading-bar-shimmer"></div>
+        </div>
+      </div>
+      <p id="loading-text" class="loading-text">Loading your tongue workout...</p>
+    </div>
+
+    <!-- Start Button (shown after loading) -->
+    <div id="welcome-start-container" style="display:none; margin-top:30px; animation: popIn 0.5s ease-out;">
+      <button id="btn-welcome-start" class="btn btn-primary" type="button"
+        style="padding: 15px 40px; font-size: 1.2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3);">
+        START QUEST →
+      </button>
+    </div>
+
+    <!-- Meme -->
+    <img src="assets/memes/loading.png" alt="Loading meme" class="loading-meme" />
+  </div>
+
+  <!-- ═══ VIEW 2 — INSTRUCTIONS ════════════════════════════════════════ -->
+  <div id="view-instructions" class="view">
+    <div class="instructions-card">
+      <h2>📜 How to Play</h2>
+      <ol class="rules-list">
+        <li>There are <strong>3 levels</strong> — Easy, Medium, and Hard.</li>
+        <li>You get <strong>3 lives</strong> (❤️) per level.</li>
+        <li>A tongue twister will be displayed. Press <strong>Start</strong> to begin.</li>
+        <li>Speak the tongue twister clearly into your microphone.</li>
+        <li>Our AI evaluates your <strong>accuracy (CER)</strong> and <strong>speed (WPM)</strong>.</li>
+        <li>Meet the threshold → advance! Fail 3 times → <strong>Game Over</strong>.</li>
+      </ol>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="accept-terms" />
+        <label for="accept-terms">I accept the terms and conditions</label>
+      </div>
+      <div style="text-align:center; margin-top:20px;">
+        <button id="btn-next" class="btn btn-primary" type="button" disabled>
+          Next →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ VIEW 3 — LEVEL 1 (EASY) ═════════════════════════════════════ -->
+  <div id="view-level-1" class="view level-view">
+    <div class="level-header">
+      <div class="level-badge easy" id="level-badge-1">Level 1 – Easy</div>
+      <div class="hearts-container" id="hearts-1">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
+    </div>
+    <div class="twister-card">
+      <p class="twister-text" id="twister-text-1">Loading...</p>
+    </div>
+    <div class="listening-waves" id="waves-1">
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+    </div>
+    <p class="status-text" id="status-1"></p>
+    <div class="eval-result" id="eval-result-1">
+      <span class="metric"><span class="metric-label">CER</span><span class="metric-value"
+          id="cer-val-1">--</span></span>
+      <span class="metric"><span class="metric-label">CER Label</span><span class="metric-value"
+          id="cer-label-1">--</span></span>
+      <span class="metric"><span class="metric-label">WPM</span><span class="metric-value"
+          id="wpm-val-1">--</span></span>
+      <span class="metric"><span class="metric-label">Speed</span><span class="metric-value"
+          id="speed-label-1">--</span></span>
+    </div>
+    <div style="margin-top:15px;">
+      <button class="btn btn-secondary btn-start" data-level="1" id="btn-start-1" type="button">🎤 Start</button>
+      <button class="btn btn-danger btn-stop" data-level="1" id="btn-stop-1" type="button" style="display:none;">⬛
+        Stop</button>
+    </div>
+  </div>
+
+  <!-- ═══ VIEW 4 — LEVEL 2 (MEDIUM) ═══════════════════════════════════ -->
+  <div id="view-level-2" class="view level-view">
+    <div class="level-header">
+      <div class="level-badge medium" id="level-badge-2">Level 2 – Medium</div>
+      <div class="hearts-container" id="hearts-2">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
+    </div>
+    <div class="twister-card">
+      <p class="twister-text" id="twister-text-2">Loading...</p>
+    </div>
+    <div class="listening-waves" id="waves-2">
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+    </div>
+    <p class="status-text" id="status-2"></p>
+    <div class="eval-result" id="eval-result-2">
+      <span class="metric"><span class="metric-label">CER</span><span class="metric-value"
+          id="cer-val-2">--</span></span>
+      <span class="metric"><span class="metric-label">CER Label</span><span class="metric-value"
+          id="cer-label-2">--</span></span>
+      <span class="metric"><span class="metric-label">WPM</span><span class="metric-value"
+          id="wpm-val-2">--</span></span>
+      <span class="metric"><span class="metric-label">Speed</span><span class="metric-value"
+          id="speed-label-2">--</span></span>
+    </div>
+    <div style="margin-top:15px;">
+      <button class="btn btn-secondary btn-start" data-level="2" id="btn-start-2" type="button">🎤 Start</button>
+      <button class="btn btn-danger btn-stop" data-level="2" id="btn-stop-2" type="button" style="display:none;">⬛
+        Stop</button>
+    </div>
+  </div>
+
+  <!-- ═══ VIEW 5 — LEVEL 3 (HARD) ═════════════════════════════════════ -->
+  <div id="view-level-3" class="view level-view">
+    <div class="level-header">
+      <div class="level-badge hard" id="level-badge-3">Level 3 – Hard</div>
+      <div class="hearts-container" id="hearts-3">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
+    </div>
+    <div class="twister-card">
+      <p class="twister-text" id="twister-text-3">Loading...</p>
+    </div>
+    <div class="listening-waves" id="waves-3">
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+      <div class="wave-bar"></div>
+    </div>
+    <p class="status-text" id="status-3"></p>
+    <div class="eval-result" id="eval-result-3">
+      <span class="metric"><span class="metric-label">CER</span><span class="metric-value"
+          id="cer-val-3">--</span></span>
+      <span class="metric"><span class="metric-label">CER Label</span><span class="metric-value"
+          id="cer-label-3">--</span></span>
+      <span class="metric"><span class="metric-label">WPM</span><span class="metric-value"
+          id="wpm-val-3">--</span></span>
+      <span class="metric"><span class="metric-label">Speed</span><span class="metric-value"
+          id="speed-label-3">--</span></span>
+    </div>
+    <div style="margin-top:15px;">
+      <button class="btn btn-secondary btn-start" data-level="3" id="btn-start-3" type="button">🎤 Start</button>
+      <button class="btn btn-danger btn-stop" data-level="3" id="btn-stop-3" type="button" style="display:none;">⬛
+        Stop</button>
+    </div>
+  </div>
+
+  <!-- ═══ OVERLAYS ═════════════════════════════════════════════════════ -->
+  <!-- Level Complete -->
+  <div id="overlay-level-complete" class="overlay">
+    <div class="overlay-content">
+      <h2 class="success-text" id="overlay-level-title">🎉 Level 1 Completed!</h2>
+      <p id="overlay-level-subtitle">On to the next challenge!</p>
+      <img src="assets/memes/win.png" alt="Win meme" id="overlay-level-meme" />
+      <br>
+      <button class="btn btn-success" id="btn-next-level" type="button">Next Level →</button>
+    </div>
+  </div>
+
+  <!-- Fail Attempt -->
+  <div id="overlay-fail" class="overlay">
+    <div class="overlay-content">
+      <h2 class="fail-text">😅 Oops!</h2>
+      <p id="overlay-fail-text">Try again! You have lives left.</p>
+      <img src="assets/memes/fail.png" alt="Fail meme" />
+      <br>
+      <button class="btn btn-primary" id="btn-try-again" type="button">Try Again 🔄</button>
+    </div>
+  </div>
+
+  <!-- Game Over -->
+  <div id="overlay-gameover" class="overlay">
+    <div class="overlay-content">
+      <h2 class="gameover-text">💀 Game Over!</h2>
+      <p>Your tongue gave up... but you can try again!</p>
+      <img src="assets/memes/gameover.png" alt="Game Over meme" />
+      <br>
+      <button class="btn btn-danger" id="btn-restart" type="button">Restart 🔁</button>
+    </div>
+  </div>
+
+  <!-- Winner -->
+  <div id="overlay-winner" class="overlay">
+    <div class="overlay-content">
+      <h2 class="winner-text">🏆 WINNER 🏆</h2>
+      <p>You conquered all tongue twisters! You're a Tongue Master!</p>
+      <img src="assets/memes/win.png" alt="Winner meme" />
+      <br>
+      <button class="btn btn-success" id="btn-play-again" type="button">Play Again 🎮</button>
+    </div>
+  </div>
+
+  <!-- Evaluating -->
+  <div id="overlay-evaluating" class="overlay">
+    <div class="overlay-content">
+      <h2 style="color: var(--accent);">🤖 Evaluating...</h2>
+      <p>AI is analyzing your tongue skills!</p>
+      <img src="assets/memes/evaluating.png" alt="Evaluating meme" />
+      <div style="margin-top:15px;">
+        <div class="loading-bar" style="width:200px;margin:0 auto;">
+          <div class="loading-bar-fill" style="width:100%;animation:shimmer 1s infinite;">
+            <div class="loading-bar-shimmer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confetti container -->
+  <div id="confetti-container" class="confetti-container"></div>
+
+  <!-- ═══ HIDDEN MODEL I/O PANEL (Ctrl+Shift+D) ═══════════════════════ -->
+  <div id="model-io">
+    <h4>🔧 Developer Panel</h4>
+    <label for="api-endpoint">ASR API Endpoint</label>
+    <input type="text" id="api-endpoint" placeholder="https://your-server.com/api/evaluate" />
+    <label for="model-input">Transcript (input)</label>
+    <textarea id="model-input" rows="3" readonly></textarea>
+    <label for="model-output">Evaluation Result (output)</label>
+    <textarea id="model-output" rows="3" placeholder='{"cer": 0.25, "wpm": 145}'></textarea>
+    <label for="model-threshold">Custom Threshold Override</label>
+    <input type="text" id="model-threshold" placeholder="Leave empty for defaults" />
+    <button class="dev-btn" id="dev-submit-eval" type="button">Submit Manual Evaluation</button>
+  </div>
+
+  <!-- ═══ SCRIPTS ══════════════════════════════════════════════════════ -->
+  <script src="js/tongueData.js?v=12"></script>
+  <script src="js/sounds.js?v=12"></script>
+  <script src="js/speech.js?v=12"></script>
+  <script src="js/app.js?v=12"></script>
+</body>
+
+</html>
