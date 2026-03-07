@@ -59,6 +59,33 @@
         <li>Our AI evaluates your <strong>accuracy (CER)</strong> and <strong>speed (WPM)</strong>.</li>
         <li>Meet the threshold → advance! Fail 3 times → <strong>Game Over</strong>.</li>
       </ol>
+      <!-- Examples Section -->
+      <div class="examples-section">
+        <h3>🔊 Listen & Learn</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">Check out these examples of
+          correct and incorrect attempts:</p>
+
+        <div class="example-item">
+          <div class="example-info">
+            <span class="example-label success">CORRECT (PASS)</span>
+            <p class="example-text">"She sells seashells by the seashore."</p>
+            <p style="font-size: 0.75rem; color: var(--secondary);">Low CER, Good Speed</p>
+          </div>
+          <button class="btn-play-example" data-text="She sells seashells by the seashore." data-type="correct"
+            title="Play Correct Example">▶️</button>
+        </div>
+
+        <div class="example-item">
+          <div class="example-info">
+            <span class="example-label danger">INCORRECT (FAIL)</span>
+            <p class="example-text">"She shells... sea... shells..."</p>
+            <p style="font-size: 0.75rem; color: var(--primary-light);">High CER, Too Slow</p>
+          </div>
+          <button class="btn-play-example" data-text="She shells... sea... shells... by the sea... shore."
+            data-type="incorrect" title="Play Incorrect Example">▶️</button>
+        </div>
+      </div>
+
       <div class="checkbox-wrapper">
         <input type="checkbox" id="accept-terms" />
         <label for="accept-terms">I accept the terms and conditions</label>

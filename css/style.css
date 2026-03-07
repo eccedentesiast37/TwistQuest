@@ -377,6 +377,119 @@ body {
   font-weight: 600;
 }
 
+/* ── Examples Section ────────────────────────────────────────────── */
+.examples-section {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.examples-section h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.example-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  transition: var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.example-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(5px);
+}
+
+.example-info {
+  flex: 1;
+}
+
+.example-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  display: inline-block;
+  letter-spacing: 0.5px;
+}
+
+.example-label.success {
+  background: var(--success-green);
+  color: #000;
+}
+
+.example-label.danger {
+  background: var(--fail-red);
+  color: #fff;
+}
+
+.example-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.btn-play-example {
+  background: var(--secondary);
+  color: var(--dark-bg);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(78, 205, 196, 0.3);
+}
+
+.btn-play-example:hover {
+  transform: scale(1.15) rotate(10deg);
+  background: var(--accent);
+  box-shadow: 0 6px 15px rgba(255, 230, 109, 0.4);
+}
+
+.btn-play-example:active {
+  transform: scale(0.9);
+}
+
+.btn-play-example.playing {
+  animation: pulse 1s infinite alternate;
+  background: var(--primary);
+  color: #fff;
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 10px var(--primary);
+    transform: scale(1);
+  }
+
+  to {
+    box-shadow: 0 0 25px var(--primary);
+    transform: scale(1.1);
+  }
+}
+
 /* ── Buttons ───────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex;

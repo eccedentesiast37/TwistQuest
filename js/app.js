@@ -193,6 +193,54 @@
         startLevel(1);
     });
 
+    // ── Examples Audio ───────────────────────────────────────────────
+    function playExampleAudio(btn) {
+        const text = btn.dataset.text;
+        const type = btn.dataset.type;
+
+        // Cancel any existing speech
+        if (window.speechSynthesis.speaking) {
+            window.speechSynthesis.cancel();
+        }
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+
+        if (type === 'correct') {
+            utterance.rate = 0.9;
+            utterance.pitch = 1.0;
+        } else {
+            // Simulate incorrect by being very slow/halting
+            utterance.rate = 0.5;
+            utterance.pitch = 0.8;
+            // Add some synthetic pauses if needed, but rate=0.5 is already quite bad
+        }
+
+        utterance.onstart = () => {
+            btn.innerHTML = '🔊';
+            btn.classList.add('playing');
+        };
+
+        utterance.onend = () => {
+            btn.innerHTML = '▶️';
+            btn.classList.remove('playing');
+        };
+
+        utterance.onerror = () => {
+            btn.innerHTML = '▶️';
+            btn.classList.remove('playing');
+        };
+
+        window.speechSynthesis.speak(utterance);
+    }
+
+    document.querySelectorAll('.btn-play-example').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            playExampleAudio(btn);
+        });
+    });
+
     // ═══════════════════════════════════════════════════════════════════
     // LEVEL MANAGEMENT
     // ═══════════════════════════════════════════════════════════════════
