@@ -30,8 +30,6 @@ TwistQuest is an AI-powered tongue twister challenge game built with modern web 
 
 Simply open `index.html` in your browser.
 
-> **Note**: For microphone permissions to be remembered, it is recommended to run the project via a local web server (e.g., VS Code Live Server extension).
-
 ##  Contributing
 
 This project is open for collaboration! To contribute:
@@ -40,6 +38,3 @@ This project is open for collaboration! To contribute:
 3. Make your changes and test.
 4. Push your branch and open a Pull Request.
 
----
-
-*TwistQuest UI — Built for performance and fun.*
